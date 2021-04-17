@@ -231,7 +231,7 @@ namespace UIAutomator
                         {
                             elem = StaticMethods.FindUnderElement(ParentWin, Name, Class, AutoID, Type, 1000);
                         }
-                        catch { }                        
+                        catch { }
                     }
 
                     if (elem == null)
@@ -635,114 +635,4 @@ namespace UIAutomator
             MouseControl.MouseClick(MouseButton);
         }
     }
-
-
-    #region Install Tool Specific
-    public class Command
-    {
-        public string Path { get; set; } = ".";
-        public string[] Arguments { get; set; }
-        public string Action { get; set; }
-        public string CtrlType { get; set; }
-        public string WinName { get; set; }
-        public string ElName { get; set; }
-        public string Class { get; set; }
-        public string AutoID { get; set; }
-        public int Timeout { get; set; }
-        public string For { get; set; }
-        public string Text { get; set; }
-        public bool Click { get; set; }
-        public string Button { get; set; }
-        public int Seconds { get; set; }
-        public int MillSecs { get; set; }
-        public bool Focus { get; set; }
-        public int DelayBefore { get; set; }
-        public int DelayAfter { get; set; }
-        public int Index { get; set; }
-        public int WinIndex { get; set; }
-
-        public void ElementClick()
-        {
-            AutomationElement _RootElem = AutomationElement.RootElement;
-            AutomationElement ParentWin = StaticMethods.FindAtIndex(_RootElem, WinName, Class, "window", AutoID, Timeout, Index);
-            if (ParentWin != null)
-            {
-                AutomationElement UIElement = StaticMethods.FindUnderElement(ParentWin, ElName, Class, AutoID, CtrlType, Timeout, Index);
-                if (UIElement != null)
-                {
-                    if (Focus)
-                        UIElement.SetFocus();
-                    StaticMethods.ElementClick(UIElement, Button);
-                }                    
-            }
-        }
-
-        public void SendKeys()
-        {
-            AutomationElement _RootElem = AutomationElement.RootElement;
-            AutomationElement ParentWin = StaticMethods.FindAtIndex(_RootElem, WinName, Class, "window", AutoID, Timeout, Index);
-            AutomationElement UIElement = StaticMethods.FindUnderElement(ParentWin, ElName, Class, AutoID, CtrlType, Timeout, Index); ;
-            if (UIElement == null && Click)
-                throw new ElementNotAvailableException("Element to be clicked before typing isn't available. Unable to execute.");
-            
-            else if (UIElement != null && Click)
-                UIElement.SetFocus();
-            StaticMethods.SendKeys(UIElement, Text, Click);
-            StaticMethods.SendKeys(UIElement, Text, Click);
-        }
-    }
-    public class BuildTestData
-    {
-        public string BuildName { get; set; }
-        public int Timeout { get; set; }
-        public string Type { get; set; }
-        public string TCName { get; set; }
-        public List<Command> Commands { get; set; }
-        public List<CmdResult> CommandResults { get; set; }
-        public bool IsComplete { get; set; } = false;
-        public TimeSpan TimeTaken
-        {
-            get
-            {
-                _TimeTaken = TimeSpan.FromMilliseconds(0);
-                foreach (CmdResult cr in CommandResults)
-                    _TimeTaken = _TimeTaken + cr.TimeTaken;
-                return _TimeTaken;
-            }
-        }
-        private TimeSpan _TimeTaken = TimeSpan.FromSeconds(0);
-        public TimeSpan PSTimeTaken { get; set; }
-    }
-    public class CmdResult
-    {
-        public string Status { get; set; }
-        public string Cmd { get; set; }
-        public string Details { get; set; }
-        public TimeSpan TimeTaken { get; set; }
-    }
-    public class BuildData
-    {
-        public string BuildName { get; set; }
-        public int TimeoutMilliseconds { get; set; }
-        public string Type { get; set; }
-        public string TCName { get; set; }
-        public List<Command> Commands { get; set; }
-    }
-    public class BuildDGData
-    {
-        public string BuildName { get; set; }
-        public string PackType { get; set; }
-        public string Date { get; set; }
-        public string Size { get; set; }
-        public object Tag;
-    }
-    public class StatusDGData
-    {
-        public string Build { get; set; }
-        public string Status { get; set; }
-        public DateTime TestTime { get; set; }
-        public TimeSpan TimeTaken { get; set; } = TimeSpan.FromMilliseconds(0);
-        public object Tag;
-    }
-    #endregion
 }

@@ -17,3 +17,9 @@ C:\Users\Admn\Desktop\InstallTool\UIAutomator\obj\Debug\UIAutomator.csproj.CoreC
 C:\Users\Admn\Desktop\InstallTool\UIAutomator\obj\Debug\UIAutomator.csproj.CopyComplete
 C:\Users\Admn\Desktop\InstallTool\UIAutomator\obj\Debug\UIAutomator.dll
 C:\Users\Admn\Desktop\InstallTool\UIAutomator\obj\Debug\UIAutomator.pdb
+C:\Users\Admn\Documents\UIAutomator\obj\Debug\UIAutomator.csproj.CoreCompileInputs.cache
+C:\Users\Admn\Documents\UIAutomator\obj\Debug\UIAutomator.dll
+C:\Users\Admn\Documents\UIAutomator\obj\Debug\UIAutomator.pdb
+C:\Users\Admn\Documents\UIAutomator\bin\Debug\UIAutomator.dll
+C:\Users\Admn\Documents\UIAutomator\bin\Debug\UIAutomator.pdb
+C:\Users\Admn\Documents\UIAutomator\obj\Debug\UIAutomator.csprojAssemblyReference.cache
